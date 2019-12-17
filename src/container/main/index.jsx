@@ -57,6 +57,8 @@ const mapDispatchToProps = dispatch => {
     },
     init: (name) => {
       dispatch(batchActions([dispatch({ type: "ADD" }), dispatch({ type: 'CHANGENAME', name })]))
+      // dispatch(batchActions([{ type: "ADD" }, { type: 'CHANGENAME', name }]))
+      // batchActions([dispatch({ type: "ADD" }), dispatch({ type: 'CHANGENAME', name })])
     }
   }
 }
