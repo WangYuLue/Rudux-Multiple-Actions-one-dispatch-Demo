@@ -1,25 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Provider } from 'react-redux'
 import './App.css';
+import MainApp from './container/main/index'
+import { createStore, applyMiddleware } from 'redux'
+import showNumber from './store/reducer'
+import { enableBatching, batchDispatchMiddleware } from 'redux-batched-actions';
+
+let store = createStore(enableBatching(showNumber), applyMiddleware(batchDispatchMiddleware));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <MainApp />
+      </div>
+    </Provider>
   );
 }
 
